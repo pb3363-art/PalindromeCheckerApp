@@ -1,7 +1,3 @@
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
-
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -11,33 +7,35 @@ public class PalindromeCheckerApp {
         System.out.println("=================================");
         System.out.println("Version: 1.0.0\n");
 
+        String input = "A man a plan a canal Panama";
 
-        String input = "level";
-
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
-
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-            stack.push(ch);
-            queue.add(ch);
-        }
-
-        boolean isPalindrome = true;
-
-        while (!stack.isEmpty()) {
-            if (!queue.remove().equals(stack.pop())) {
-                isPalindrome = false;
-                break;
-            }
-        }
+        boolean isPalindrome = checkPalindrome(input);
 
         if (isPalindrome) {
-            System.out.println("The word '" + input + "' is a PALINDROME.");
+            System.out.println("The sentence \"" + input + "\" is a PALINDROME.");
         } else {
-            System.out.println("The word '" + input + "' is NOT a palindrome.");
+            System.out.println("The sentence \"" + input + "\" is NOT a palindrome.");
         }
 
         System.out.println("\nProgram execution completed.");
+    }
+
+    private static boolean checkPalindrome(String str) {
+
+        // Normalize: remove spaces & convert to lowercase
+        String normalized = str.toLowerCase().replaceAll("\\s+", "");
+
+        int left = 0;
+        int right = normalized.length() - 1;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
     }
 }
