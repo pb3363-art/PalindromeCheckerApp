@@ -2,22 +2,32 @@ public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
+        System.out.println("=================================");
         System.out.println("       PALINDROME CHECKER APP    ");
-
+        System.out.println("=================================");
         System.out.println("Version: 1.0.0\n");
 
+        String input = "radar";
+        char[] characters = input.toCharArray();
 
-        String original = "level";
-        String reversed = "";
+        int left = 0;
+        int right = characters.length - 1;
 
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        boolean isPalindrome = true;
+
+        while (left < right) {
+            if (characters[left] != characters[right]) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
         }
 
-        if (original.equals(reversed)) {
-            System.out.println("The word '" + original + "' is a PALINDROME.");
+        if (isPalindrome) {
+            System.out.println("The word '" + input + "' is a PALINDROME.");
         } else {
-            System.out.println("The word '" + original + "' is NOT a palindrome.");
+            System.out.println("The word '" + input + "' is NOT a palindrome.");
         }
 
         System.out.println("\nProgram execution completed.");
