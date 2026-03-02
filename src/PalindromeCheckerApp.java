@@ -7,18 +7,18 @@ public class PalindromeCheckerApp {
         System.out.println("Version: 1.0.0");
         System.out.println("Welcome to the Palindrome Checker Application!\n");
 
-        // UC2: Hardcoded Palindrome Check
+        
 
-        String word = "madam";  // Hardcoded string
+        String word = "madam"; 
 
         String reversed = "";
 
-        // Reverse the string
+      
         for (int i = word.length() - 1; i >= 0; i--) {
             reversed += word.charAt(i);
         }
 
-        // Check palindrome using if-else
+       
         if (word.equals(reversed)) {
             System.out.println("The word '" + word + "' is a PALINDROME.");
         } else {
