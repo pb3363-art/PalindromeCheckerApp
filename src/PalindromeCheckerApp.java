@@ -1,7 +1,3 @@
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
-
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
@@ -11,33 +7,45 @@ public class PalindromeCheckerApp {
         System.out.println("=================================");
         System.out.println("Version: 1.0.0\n");
 
+        String input = "RaceCar";
 
-        String input = "level";
+        // Create service object
+        PalindromeChecker service = new PalindromeChecker();
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        boolean result = service.checkPalindrome(input);
 
-        for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-            stack.push(ch);
-            queue.add(ch);
-        }
-
-        boolean isPalindrome = true;
-
-        while (!stack.isEmpty()) {
-            if (!queue.remove().equals(stack.pop())) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        if (isPalindrome) {
-            System.out.println("The word '" + input + "' is a PALINDROME.");
+        if (result) {
+            System.out.println("The word \"" + input + "\" is a PALINDROME.");
         } else {
-            System.out.println("The word '" + input + "' is NOT a palindrome.");
+            System.out.println("The word \"" + input + "\" is NOT a palindrome.");
         }
 
         System.out.println("\nProgram execution completed.");
+    }
+
+    // ==============================
+    // OOPS SERVICE CLASS
+    // ==============================
+    static class PalindromeChecker {
+
+        // Public method exposed
+        public boolean checkPalindrome(String str) {
+
+            // Normalize input (case-insensitive)
+            String normalized = str.toLowerCase();
+
+            int left = 0;
+            int right = normalized.length() - 1;
+
+            while (left < right) {
+                if (normalized.charAt(left) != normalized.charAt(right)) {
+                    return false;
+                }
+                left++;
+                right--;
+            }
+
+            return true;
+        }
     }
 }
